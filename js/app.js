@@ -154,11 +154,15 @@ const render = (state) => {
             let innerHtml = '';
             for (let i = 0; i < state.cards.length; i++) {
                 const card = state.cards[i];
+                let img = card.image;
+                if (typeof img === "undefined") {
+                    img = `assets/Load.gif`;
+                }
 
                 if (card.bottom) {
                     innerHtml += `
                 <div class='col-3 text-center py-1'>
-                <img src='${card.image}' class='js-card col-12' data-index=${i}>
+                <img src='${img}' class='js-card col-12' data-index=${i}>
                 <span class='font-weight-bold col-12'>${card.value} ${card.suit}</span>
                 </div>
                 `;
@@ -166,7 +170,7 @@ const render = (state) => {
                     innerHtml += `
                     <div class='col-3 text-center py-1'>
                     <span class='font-weight-bold col-12'>${card.value} ${card.suit}</span>
-                    <img src='${card.image}' class='js-card col-12' data-index=${i}>
+                    <img src='${img}' class='js-card col-12' data-index=${i}>
                     </div>
                     `;
                 }
